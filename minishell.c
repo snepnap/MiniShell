@@ -18,15 +18,13 @@ int total_commands = 0;
 void add_to_history(char *line) {
     if (line == NULL || strlen(line) == 0) return;
     
-    // Copy the command into the current slot
     strncpy(history[history_index], line, MAX_CMD_LEN);
     
-    // Move index to next slot (wrap around using modulo)
     history_index = (history_index + 1) % HISTORY_COUNT;
     total_commands++;
 }
 
-// Function to print history
+
 void print_history() {
     int start = (total_commands > HISTORY_COUNT) ? history_index : 0;
     int count = (total_commands > HISTORY_COUNT) ? HISTORY_COUNT : total_commands;
@@ -92,16 +90,16 @@ int main() {
 
         if (strlen(line) == 0) continue;
 
-        // 1. Add to history before we destroy the string with strtok
+        
         add_to_history(line);
-        strcpy(line_copy, line); // Copy for parsing
+        strcpy(line_copy, line); 
 
         parse_line(line_copy, args);
 
         if (args[0] == NULL) continue;
         if (strcmp(args[0], "exit") == 0) break;
 
-        // 2. Built-in: history
+        
         if (strcmp(args[0], "history") == 0) {
             print_history();
             continue;
@@ -115,4 +113,5 @@ int main() {
         execute_command(args);
     }
     return 0;
+
 }
