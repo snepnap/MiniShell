@@ -28,7 +28,7 @@ Clone the project:
 
 Bash
 
-git clone https://github.com/YOUR_USERNAME/minishell.git
+git clone https://github.com/snepnap/minishell.git
 cd minishell
 Compile:
 
